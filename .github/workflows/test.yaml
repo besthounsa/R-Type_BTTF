@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up CMake
+        run: sudo apt-get install cmake
+
+      - name: Install SFML
+        run: sudo apt-get install libsfml-dev
+
+      - name: Install Boost.Asio
+        run: sudo apt-get install libboost-all-dev
+
+      - name: Build project
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+          make
