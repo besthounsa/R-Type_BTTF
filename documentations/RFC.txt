@@ -1,0 +1,89 @@
+				RTYPE RFC BINARY PROTOCOL
+Network RType Group                                        Groupe member: AYITECHEOU Shalom
+Request for Comments:                                                     HOUNSA Best
+Protocol Type: Binary procol                                              ADJAHO Mouamar
+                                                                          DOSSOU Charbel
+                                                                          MINGNISSE Fabrice
+
+Status of this protocol:
+ 	protocol gives more information on how 
+ 	our network communication takes place 
+ 	from authentication to sending packages 
+ 	for the game.
+
+    Copyright:
+ 	            Copyright (C) EPITECH. All Rights Reserved.
+
+    Tables of Contents:
+                    1. Introduction................................................
+                    2. Network Library.............................................
+                        2.1. Why we use it..........................................
+                    3. How we think our game communication.........................
+                    4. Authentification............................................
+                        4.1. Communication Code Authentification....................
+
+                        1. Introduction
+			         ------------
+	The goal of this project is to make an RType (Iconic Game).
+	This game must be able to be played by several players thanks 
+	to a library that we will have chosen ourselves. Without 
+	forgetting that this game must run under the UDP protocol and 
+	not the TCP. In our case, we went with Boost.Asio.
+ 	 
+ 	 		       2. Network Library
+ 	 		          ---------------
+ 	 We choose boost.asio library to implement our game. We also
+ 	 choose UDP protcol for both authentification and game package
+ 	 (sends/receives) as recommended by subject.
+ 	 
+ 	 2.1. Why we use it
+ 	      -------------
+ 	 	Boost.Asio is the best implementation among the existing 
+ 	 	ones. Based on Boost.Asio, a number of libraries and 
+ 	 	applications (libpion , cpp-netlib) have already been 
+ 	 	implemented, and new things are being developed. Beside 
+ 	 	that, in addition to Boost.Asio.
+
+ 	 	               3. How we think our communication game
+ 	              		  ------------------------------------
+ 	Here we send messages without serialization or in binary protocol.
+
+    4. Authentification
+        			   ----------------
+        for authentication we create a function called LoginPage, which manage the 
+        waiting in the rooms, the connection to the server and many other authenti
+        cation steps always following the UDP protocol.
+
+        4.1. Communication Code Authentification
+                        -----------------
+        When a client wishes to connect to the server, it sends a message in the following format
+            
+            If 200:Name of the player.
+
+        When a client wishes to disconnect, it sends a message in the format :
+            
+            If 201:Logout.
+
+        The Clients can send messages indicating their movements:
+
+            If 202:Move UP.
+            If 203:Move DOWN.
+            If 204:Move LEFT.
+            If 205:Move RIGHT
+        
+        Rooms creations
+
+            If 210: create a room and the server responds 211:ID of the new room created
+        
+        Rooms Availables
+
+            If 211, the server responds 211:Numbers of rooms:ID1,ID2,ID3,...
+
+        Join a room
+
+            When a client wants to join a room, he sends a message with the room ID :
+            
+            212:IDRoom ---> And The server processes the request, 
+                            and if it is possible to join the room, 
+                            it sends a confirmation message. 
+                            If not, it may send an error message.

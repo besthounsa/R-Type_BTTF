@@ -1,0 +1,11 @@
+site_name: My Docs
+site_url: https://example.com/
+nav:
+  - Home: index.md
+  - Introduction: introduction.md
+  - Game Architecture: game.md
+  - Developer's Guide: dev.md
+  - Coding Best Practices: cod.md
+  - Network Protocol Documentation: net.md
+  - FAQ: faq.md
+theme: readthedocs
